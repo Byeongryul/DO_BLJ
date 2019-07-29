@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<form action="{%url 'create'%}">
+    <div class="text-center">
+        <h1>제목</h1>
+        <br>
+        <input type="text" name="title">
+        <br><br>
+        <h1>본문</h1>
+        <br>
+        <textarea cols="40" rows="10" name="body"></textarea>
+        <br><br>
+        <input id='id_image' type="file" name="image" accept="image/*" required=""><br>
+        <br>
+    </div>
+    
+    <div class="text-center">
+        <input class="btn btn-info btn-sm" type="submit" value="제출하기">
+    </div>
+</form>
+{% endblock %}
