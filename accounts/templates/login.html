@@ -1,44 +1,41 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
 {% load socialaccount %}
 {% providers_media_js %}
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% block content %}
 
-    <title>Design Ocean</title>
-    <link rel="shortcut icon" sizes="72x72" href="{% static 'prolog.png'%}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'accounts.css' %}">
+{% block nav %}
+{% endblock nav %}
 
-</head>
-<body>
-    <div class="login-main">
-        <p>
-            <h1>
-                <img src="{% static 'prolog.png' %}" alt="not found">
-                Design Ocean
-            </h1>
-        </p>              
+{% block scc %}     <!-- 페이지별 css -->
+{{block.super}}
+<link rel="stylesheet" href="{% static 'accounts.css' %}">
+{% endblock scc %}
+
+<div class="login-main">
+    <p>
+        <h1>
+            <img src="{% static 'prolog.png' %}" alt="not found">
+            Design Ocean
+        </h1>
+    </p>              
+</div>
+<div class="login-main">
+    {% if user.is_active %}
+    <div id="login-status">
+        {{user.username}} 님이 로그인 중
+        <a href="/accounts/logout">로그아웃</a><br>
     </div>
-    <div class="login-main">
-        {% if user.is_active %}
-        <div id="login-status">
-            {{user.username}} 님이 로그인 중
-            <a href="/accounts/logout">로그아웃</a><br>
-        </div>
-        {% else %}
-        <div id="login-button">
-            <!-- <a class="btn btn-outline-success" href="/accounts/signup" role="button">회원가입</a> -->
-            <a class="btn btn-outline-info" href="{% provider_login_url 'google' %}" role="button">구글 로그인</a>
-        </div>
-        <div id="login-status">
-                당신 로그인 해야댐
-        </div>
-        {% endif %}   
+    {% else %}
+    <div id="login-button">
+        <!-- <a class="btn btn-outline-success" href="/accounts/signup" role="button">회원가입</a> -->
+        <a class="btn btn-outline-info" href="{% provider_login_url 'google' %}" role="button">구글 로그인</a>
     </div>
-</body>
-</html>
+    <div id="login-status">
+            당신 로그인 해야댐
+    </div>
+    {% endif %}   
+</div>
+
+{% endblock %}
