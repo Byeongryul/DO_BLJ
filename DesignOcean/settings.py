@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'prolog.apps.PrologConfig',
-    'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'design.apps.DesignConfig',
     'privatepage.apps.PrivatepageConfig',
@@ -136,7 +135,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'user', 'static'),
     os.path.join(BASE_DIR, 'home', 'static'),
     os.path.join(BASE_DIR, 'prolog', 'static'),
     os.path.join(BASE_DIR, 'privatepage', 'static'),
@@ -155,11 +154,14 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+AUTH_USER_MODEL = 'user.User' 
+
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 LOGIN_REDIRECT_URL = "http://127.0.0.1:8000/home/"
 ACCOUNT_AUTHENTICATED_LOGOUT_REDIRECTS = True
 ACCOUNT_LOGOUT_REDIRECT_URL = "http://127.0.0.1:8000/"
 
+LOGIN_URL = '/user/login/'
+
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'user.User' 

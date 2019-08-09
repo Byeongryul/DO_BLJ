@@ -25,7 +25,7 @@ urlpatterns = [
     
     path('', prolog.views.prolog, name = "prolog"),
     
-    path('account/', include('accounts.urls')),
+    path('user/', include('user.urls')),
     path('home/', include('home.urls')),
     path('accounts/', include('allauth.urls')), 
     path('privatepage/', include('privatepage.urls')),

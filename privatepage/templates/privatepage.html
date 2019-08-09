@@ -7,9 +7,6 @@
 <link rel="stylesheet" href="{% static 'privatepage.css' %}">
 {% endblock scc %}
 
-{% if not user.is_active %}
-<script>history.go(-1)</script>
-{% endif %}
 <div id="container">
     <div class="pf">
         <div class="pf-image">

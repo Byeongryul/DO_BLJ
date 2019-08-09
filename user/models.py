@@ -63,4 +63,4 @@ class User(AbstractBaseUser, PermissionsMixin): #유저 모델 재정의
         swappable = 'AUTH_USER_MODEL'
     
     def email_user(self, subjects, message, from_email=None, **kwargs):      #이메일 발송 메서드
-        send_mail(subject, message, from_emial, [self.email], **kwargs)
+        send_mail(subject, message, from_email, [self.email], **kwargs)

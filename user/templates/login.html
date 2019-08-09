@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block content %}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block scc %}     <!-- 페이지별 css -->
+{{block.super}}
+<link rel="stylesheet" href="{% static 'user.css' %}">
+{% endblock scc %}
+
+<div class="login-main">
+    <p>
+        <h1>
+            <img src="{% static 'prolog.png' %}" alt="not found">
+            Design Ocean
+        </h1>
+    </p>              
+</div>
+<div class="login-main">
+    {% if user.is_active %}
+    <div id="login-status">
+        {{user.username}} 님이 로그인 중
+        <a href="/accounts/logout">로그아웃</a><br>
+    </div>
+    {% else %}
+    <div id="login-button">
+        <!-- <a class="btn btn-outline-success" href="/accounts/signup" role="button">회원가입</a> -->
+        <a class="btn btn-outline-info" href="{% provider_login_url 'google' %}" role="button">구글 로그인</a>
+    </div>
+    <div id="login-status">
+            당신 로그인 해야댐
+    </div>
+    {% endif %}   
+</div>
+<div class="panel panel-default registration">
+    <div class="panel-heading">
+        로그인하기
+    </div>
+    <div class="panel-body">
+        <form action="." method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group {% if field.errors|length > 0 %}has-error{%endif %}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    <input name="{{ field.html_name }}" id="{{ field.id_for_lable }}" class="form-control" type="{{ field.field.widget.input_type }}" value="{{ field.value|default_if_none:'' }}">
+                    {% for error in field.errors %}
+                        <label class="control-label" for="{{ field.id_for_label }}">{{ error }}</label>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button class="btn btn-primary btn-large" type="submit">로그인하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
