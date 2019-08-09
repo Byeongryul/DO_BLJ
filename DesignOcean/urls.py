@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 import prolog.views
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    
     path('', prolog.views.prolog, name = "prolog"),
     
     path('account/', include('accounts.urls')),
