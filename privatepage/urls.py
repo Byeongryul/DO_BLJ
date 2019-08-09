@@ -17,5 +17,5 @@ from django.urls import path
 
 from . import views
 urlpatterns = [
-    path('privatepage/', views.privatepage, name='privatepage'),
+    path('', views.PrivatePageView.as_view(), name='privatepage'),
 ]

@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block content %}
 
+{% block scc %}     <!-- 페이지별 css -->
+{{block.super}}
+<link rel="stylesheet" href="{% static 'privatepage.css' %}">
+{% endblock scc %}
+
+{% if not user.is_active %}
+<script>history.go(-1)</script>
+{% endif %}
 <div id="container">
     <div class="pf">
         <div class="pf-image">
